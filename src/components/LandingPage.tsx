@@ -338,39 +338,37 @@ function Hero({ onOpenContact }: { onOpenContact: () => void }) {
   const headlineWords = heroSlides.map((slide) => slide.headlineWord);
 
   return (
-    <section className="landing-hero landing-hero-grid relative px-5 pt-8 pb-20 sm:pt-12 lg:pt-16">
+    <section className="landing-hero landing-hero-grid relative px-6 pt-10 pb-20 sm:px-5 sm:pt-12 lg:pt-16">
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
         <div className="landing-reveal text-center lg:text-left">
-          <span className="landing-eyebrow mb-5 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold">
+          <span className="landing-eyebrow mb-6 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold sm:mb-5">
             <Blocks size={13} strokeWidth={2.5} />
             Build your own
           </span>
-          <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-surface-foreground sm:text-5xl lg:text-[3.5rem]">
-            <span className="text-[0.72em] sm:text-[0.9em] lg:text-[1em]">Custom</span>
-            <br className="lg:hidden" />{" "}
-            <TypingHeadlineWord
-              words={headlineWords}
-              index={slideIndex}
-              onIndexChange={setSlideIndex}
-            />
-            <br />
-            <span className="block whitespace-nowrap text-[0.72em] sm:text-[0.9em]">
-              for ambitious business.
+          <h1 className="landing-hero-headline font-bold text-surface-foreground">
+            <span className="inline">
+              Custom{"\u00a0"}
+              <TypingHeadlineWord
+                words={headlineWords}
+                index={slideIndex}
+                onIndexChange={setSlideIndex}
+              />
             </span>
+            <span className="landing-hero-headline-sub">for ambitious business.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-surface-muted-foreground lg:mx-0">
+          <p className="mx-auto mt-6 max-w-xl text-[0.9375rem] leading-[1.65] text-surface-muted-foreground sm:mt-5 sm:text-base sm:leading-relaxed lg:mx-0">
             Custom software that streamlines ops and helps you scale.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+          <div className="mt-9 flex flex-nowrap items-center justify-center gap-2 sm:mt-8 sm:gap-3 lg:justify-start">
             <button
               type="button"
               onClick={onOpenContact}
-              className="landing-btn-primary flex h-12 items-center gap-2 rounded-xl px-7 text-sm font-semibold"
+              className="landing-btn-primary flex h-12 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold sm:flex-none sm:px-7"
             >
-              Describe your problem
+              Brief us
               <ArrowRight size={16} strokeWidth={2.5} />
             </button>
-            <a href="#services" className="landing-btn-ghost flex h-12 items-center gap-2 rounded-xl px-6 text-sm font-semibold">
+            <a href="#services" className="landing-btn-ghost flex h-12 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold sm:flex-none sm:px-6">
               See what we build
             </a>
           </div>
@@ -498,7 +496,20 @@ function Examples() {
         <p className="mx-auto mt-12 max-w-xl text-center text-sm font-medium text-surface-muted-foreground">
           Sectors we know — from independents to enterprise teams.
         </p>
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+        <div className="landing-industries-marquee -mx-5 mt-5 sm:hidden">
+          <div className="landing-industries-marquee-track">
+            {[...industries, ...industries].map(({ icon: Icon, name }, index) => (
+              <span
+                key={`${name}-${index}`}
+                className="inline-flex shrink-0 items-center gap-2 rounded-full border border-surface-border bg-surface-card px-4 py-2 text-sm font-medium text-surface-muted-foreground"
+              >
+                <Icon size={15} className="text-brand" strokeWidth={2} />
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="mt-5 hidden flex-wrap items-center justify-center gap-3 sm:flex">
           {industries.map(({ icon: Icon, name }) => (
             <span
               key={name}
