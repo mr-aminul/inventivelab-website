@@ -191,7 +191,7 @@ const services = [
 const steps = [
   {
     title: "Tell us the problem",
-    body: "What's broken or slow — plain language, no RFP.",
+    body: "What's broken or slow — plain language, no complex format.",
   },
   {
     title: "We agree scope & price",
@@ -527,26 +527,30 @@ function Examples() {
 
 function HowItWorks() {
   return (
-    <section id="how" className="px-5 py-20">
-      <div className="mx-auto w-full max-w-6xl">
-        <SectionHeading
-          eyebrow="How it works"
-          title="From problem to working software"
-          subtitle="Fixed price, fast build, refined until it fits."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+    <section id="how" className="px-5 py-20 sm:py-24">
+      <div className="mx-auto w-full max-w-5xl">
+        <h2 className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-surface-muted-foreground">
+          How it works
+        </h2>
+
+        <ol className="landing-how-steps mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
           {steps.map((step, i) => (
-            <div key={step.title} className="relative">
-              <div className="flex items-center gap-3">
-                <span className="landing-step-num flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-bold">
-                  {i + 1}
-                </span>
-                <h3 className="text-lg font-bold text-surface-foreground">{step.title}</h3>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-surface-muted-foreground">{step.body}</p>
-            </div>
+            <li key={step.title} className="landing-how-step relative flex flex-col items-center text-center">
+              <span
+                className="landing-how-step-num relative z-10 flex h-12 w-12 items-center justify-center rounded-full text-base font-bold"
+                aria-hidden
+              >
+                {i + 1}
+              </span>
+              <h3 className="mt-5 text-lg font-bold tracking-tight text-surface-foreground">
+                {step.title}
+              </h3>
+              <p className="mt-2 max-w-[16rem] text-sm leading-relaxed text-surface-muted-foreground">
+                {step.body}
+              </p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
