@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
-import { ArrowRight, CheckCircle2, Loader2, X } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, Mail, Phone, X } from "lucide-react";
 import { CONTACT_EMAIL, CONTACT_PHONES } from "../contact-details";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -127,16 +127,21 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             <p id={descriptionId} className="contact-modal-subtitle">
               Tell us what you want to build. We&apos;ll get back to you at the email you provide.
             </p>
-            <p className="contact-modal-direct">
-              Or call{" "}
-              {CONTACT_PHONES.map((phone, index) => (
-                <span key={phone.tel}>
-                  {index > 0 ? " / " : null}
-                  <a href={`tel:${phone.tel}`}>{phone.display}</a>
-                </span>
-              ))}{" "}
-              or email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-            </p>
+            <div className="contact-modal-direct">
+              <p className="contact-modal-direct-row">
+                <Phone size={14} strokeWidth={2.25} aria-hidden />
+                {CONTACT_PHONES.map((phone, index) => (
+                  <span key={phone.tel} className="contact-modal-direct-phones">
+                    {index > 0 ? <span aria-hidden> / </span> : null}
+                    <a href={`tel:${phone.tel}`}>{phone.display}</a>
+                  </span>
+                ))}
+              </p>
+              <p className="contact-modal-direct-row">
+                <Mail size={14} strokeWidth={2.25} aria-hidden />
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+              </p>
+            </div>
 
             <form className="contact-modal-form" onSubmit={handleSubmit}>
               <input
