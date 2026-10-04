@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { ArrowRight, CheckCircle2, Loader2, X } from "lucide-react";
+import { CONTACT_EMAIL, CONTACT_PHONES } from "../contact-details";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -121,10 +122,20 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
         ) : (
           <>
             <h2 id={titleId} className="contact-modal-title">
-              Describe your problem
+              Describe your plan
             </h2>
             <p id={descriptionId} className="contact-modal-subtitle">
-              Tell us what isn&apos;t working. We&apos;ll get back to you at the email you provide.
+              Tell us what you want to build. We&apos;ll get back to you at the email you provide.
+            </p>
+            <p className="contact-modal-direct">
+              Or call{" "}
+              {CONTACT_PHONES.map((phone, index) => (
+                <span key={phone.tel}>
+                  {index > 0 ? " / " : null}
+                  <a href={`tel:${phone.tel}`}>{phone.display}</a>
+                </span>
+              ))}{" "}
+              or email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             </p>
 
             <form className="contact-modal-form" onSubmit={handleSubmit}>
@@ -166,12 +177,12 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               </label>
 
               <label className="contact-modal-field">
-                <span className="contact-modal-label">What can we help with?</span>
+                <span className="contact-modal-label">What&apos;s the plan?</span>
                 <textarea
                   name="message"
                   required
                   rows={5}
-                  placeholder="What's the problem, who's affected, and what would a good outcome look like?"
+                  placeholder="What are you building, who's it for, and what does success look like?"
                   className="contact-modal-input contact-modal-textarea"
                   disabled={status === "submitting"}
                 />

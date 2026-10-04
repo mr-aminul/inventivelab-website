@@ -39,8 +39,7 @@ import { heroSlides } from "./hero/heroSlides";
 import { TypingHeadlineWord } from "./hero/TypingHeadlineWord";
 import { BrainLogo } from "./BrainLogo";
 import { ContactModal } from "./ContactModal";
-
-const CONTACT_EMAIL = "info@inventivelab.bd";
+import { CONTACT_EMAIL, CONTACT_PHONES } from "../contact-details";
 
 type ExampleCategory = "software" | "app" | "website" | "automation";
 
@@ -190,8 +189,8 @@ const services = [
 
 const steps = [
   {
-    title: "Tell us the problem",
-    body: "What's broken or slow — plain language, no complex format.",
+    title: "Tell us the plan",
+    body: "What you want built — plain language, no complex format.",
   },
   {
     title: "We agree scope & price",
@@ -227,7 +226,7 @@ const promises = [
   {
     icon: MessageSquare,
     title: "Plain language",
-    body: "You describe the problem — we handle the build.",
+    body: "You describe the plan — we handle the build.",
   },
   {
     icon: RefreshCw,
@@ -607,10 +606,10 @@ function FinalCta({ onOpenContact }: { onOpenContact: () => void }) {
             <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Got a problem worth solving?
+            Got a plan worth building?
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-base text-white/70">
-            What&apos;s not working? We&apos;ll reply with scope, price, timeline.
+            Tell us what you have in mind. We&apos;ll reply with scope, price, timeline.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <button
@@ -618,7 +617,7 @@ function FinalCta({ onOpenContact }: { onOpenContact: () => void }) {
               onClick={onOpenContact}
               className="landing-btn-on-dark flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-semibold"
             >
-              Describe your problem
+              Describe your plan
               <ArrowRight size={16} strokeWidth={2.5} />
             </button>
             <a
@@ -653,6 +652,11 @@ function Footer() {
           </a>
         </nav>
         <div className="flex flex-col items-center gap-1 sm:items-end">
+          {CONTACT_PHONES.map((phone) => (
+            <a key={phone.tel} href={`tel:${phone.tel}`} className="landing-footer-link text-sm">
+              {phone.display}
+            </a>
+          ))}
           <a href={`mailto:${CONTACT_EMAIL}`} className="landing-footer-link text-sm">
             {CONTACT_EMAIL}
           </a>

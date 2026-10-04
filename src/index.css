@@ -1129,6 +1129,22 @@
   color: hsl(var(--il-muted-foreground));
 }
 
+.contact-modal-direct {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: hsl(var(--il-muted-foreground));
+}
+
+.contact-modal-direct a {
+  color: var(--il-brand);
+  font-weight: 600;
+}
+
+.contact-modal-direct a:hover {
+  text-decoration: underline;
+}
+
 .contact-modal-form {
   margin-top: 1.5rem;
   display: flex;
